@@ -1,0 +1,10 @@
+logs
+*.log
+node_modules
+.DS_*
+
+vendor
+dist
+build
+
+*.sublime*
