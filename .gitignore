@@ -8,3 +8,4 @@ dist
 build
 
 *.sublime*
+__pycache__
