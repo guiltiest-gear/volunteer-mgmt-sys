@@ -25,6 +25,15 @@
   * `prod` - Production branch
     * **DO NOT DIRECTLY COMMIT TO** `prod`
 
+## Setup
+
+1. Install both python and nodejs
+2. Run:
+
+```bash
+source setup-dev
+```
+
 ## License
 
 GPL-3.0-or-later
