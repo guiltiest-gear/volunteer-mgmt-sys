@@ -7,5 +7,10 @@
   "scripts": {
     "prepare": "husky",
     "commitlint": "commitlint --edit"
+  },
+  "dependencies": {
+    "preact": "^10.29.1",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat"
   }
 }
