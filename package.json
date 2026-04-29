@@ -19,12 +19,12 @@
   "lint-staged": {
     "**/*.{html,css}": [
       "prettier --write",
-      "git add"
+      "git add **/*.{html,css}"
     ],
     "**/*.js": [
       "prettier --write",
       "eslint --fix",
-      "git add"
+      "git add **/*.js"
     ]
   },
   "dependencies": {
