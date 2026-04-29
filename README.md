@@ -25,6 +25,7 @@
   * `prod` - Production branch
     * **DO NOT DIRECTLY COMMIT TO** `prod`
 
+<!-- TODO: Add more detail to the dependencies section -->
 ## Dependencies
 
 * MySQL database
