@@ -25,6 +25,11 @@
   * `prod` - Production branch
     * **DO NOT DIRECTLY COMMIT TO** `prod`
 
+## Dependencies
+
+* MySQL database
+* Python 3.10+
+
 ## Setup
 
 1. Install both python and nodejs
