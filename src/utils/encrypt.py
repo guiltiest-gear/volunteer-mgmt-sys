@@ -16,3 +16,15 @@ def password_hash(password: str) -> tuple[str, str]:
 
     # Return hex digest of hash
     return salt, sha256(hash_input, usedforsecurity=True).hexdigest()
+
+def verify_password(pw_input: str, pw_salt: str, pw_hash: str) -> bool:
+    """
+    Return true if the inputted password matches the hash, return false
+    otherwise.
+    """
+
+    hash_input: bytes = (pw_input + pw_salt).encode()
+    if sha256(hash_input, usedforsecurity=True).hexdigest() == pw_hash:
+        return True
+    else:
+        return False
