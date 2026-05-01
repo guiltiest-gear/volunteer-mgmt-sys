@@ -3,22 +3,18 @@
 */
 
 //page navigation
-function navigate(page)
-{
+function navigate(page) {
   alert("Navigating to " + page);
 }
 //function to access profile
-function profile()
-{
+function profile() {
   alert("Opening profile...");
 }
 //sign out function
-function signOut()
-{
+function signOut() {
   //prompt user to confirm logout
   const confirmLogout = confirm("Are you sure you want to sign out?");
-  if (confirmLogout)
-  {
+  if (confirmLogout) {
     alert("Signed out!");
   }
 }

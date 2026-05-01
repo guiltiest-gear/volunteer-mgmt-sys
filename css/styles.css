@@ -1,13 +1,11 @@
 /* body formatting */
-body 
-{
+body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
 }
 /* navigation bar */
-.navbar
-{
+.navbar {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -17,15 +15,13 @@ body
   border-bottom: 1px solid #ddd;
 }
 /* logo */
-.logo
-{
+.logo {
   font-size: 24px;
   font-weight: bold;
   color: #bfa046;
 }
 /* navigation links in ellipsoid */
-.nav-links
-{
+.nav-links {
   /* centers nav bar */
   position: absolute;
   left: 50%;
@@ -41,26 +37,22 @@ body
   align-items: center;
 }
 /* each link */
-.nav-links a
-{
+.nav-links a {
   text-decoration: none;
   color: #333;
   cursor: pointer;
 }
 /* hover effect */
-.nav-links a:hover
-{
+.nav-links a:hover {
   text-decoration: underline;
 }
 /* action buttons */
-.nav-actions
-{
+.nav-actions {
   display: flex;
   gap: 10px;
 }
 /* button creation */
-.btn
-{
+.btn {
   padding: 8px 14px;
   border-radius: 8px;
   width: 100px;
@@ -70,37 +62,32 @@ body
   cursor: pointer;
 }
 /* inverses button for sign out */
-.btn.black
-{
+.btn.black {
   background-color: black;
   color: white;
   border: none;
 }
 /* hero */
-.hero
-{
+.hero {
   text-align: center;
   padding: 80px 20px;
   background-color: #eaeaea;
   margin: 20px;
 }
 /* title text in hero */
-.hero h1
-{
+.hero h1 {
   font-size: 48px;
   margin: 0;
   font-weight: 800;
 }
 /* smaller text in hero */
-.hero p
-{
+.hero p {
   margin-top: 20px;
   font-size: 18px;
   color: #777;
 }
 /* footer */
-.footer
-{
+.footer {
   background-color: #222;
   color: white;
   padding: 15px 25px;
@@ -110,8 +97,7 @@ body
   font-size: 14px;
 }
 /* logo in the footer */
-.footer-logo 
-{
+.footer-logo {
   font-weight: bold;
   color: #4caf50;
 }
