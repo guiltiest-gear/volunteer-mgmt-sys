@@ -8,6 +8,10 @@ def password_hash(password: str) -> tuple[str, str]:
     The first element is the salt, and the second is the hex digest,
     both of them being strings.
     """
+
+    if type(password) is not str:
+        raise TypeError("password must be of string type")
+
     # Generate 32 byte long salt
     salt: str = token_hex(32)
 
