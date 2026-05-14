@@ -1,6 +1,3 @@
-def init_db() -> None:
-    pass
-
 def init_tables() -> None:
     """Create the tables in the database"""
     pass
