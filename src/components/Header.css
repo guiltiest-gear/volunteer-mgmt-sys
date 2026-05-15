@@ -1,0 +1,36 @@
+.navbar {
+    display: flex;
+    height: 64px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+    justify-self: start;
+}
+
+.logo-img {
+    display: block;
+}
+
+/* button definition */
+.btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    width: 100px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+}
+
+/* button with black background and white text */
+.btn.black {
+    background-color: black;
+    color: white;
+    border: none;
+}
