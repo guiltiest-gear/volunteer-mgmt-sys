@@ -1,17 +1,17 @@
 import { useState } from "preact/hooks";
+import { Toast } from "../components/Toast.jsx";
 
 export function EditPassword() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [toast, setToast] = useState(false);
 
   /** @param {Event} e */
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
-    setSuccess("");
 
     if (newPassword !== confirmPassword) {
       setError("New passwords do not match.");
@@ -64,10 +64,10 @@ export function EditPassword() {
         return;
       }
 
-      setSuccess("Password updated successfully.");
-      setCurrentPassword("");
-      setNewPassword("");
-      setConfirmPassword("");
+      setToast(true);
+      setTimeout(() => {
+        window.location.href = "/profile";
+      }, 2500);
     } catch {
       setError("Could not connect to server.");
     }
@@ -102,7 +102,7 @@ export function EditPassword() {
         <button type="submit">Update Password</button>
       </form>
       {error && <p id="message">{error}</p>}
-      {success && <p id="message" style="color: #01573e;">{success}</p>}
+      {toast && <Toast message="Password updated successfully!" onClose={() => setToast(false)} />}
     </div>
   );
 }

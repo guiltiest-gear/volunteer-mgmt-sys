@@ -1,9 +1,11 @@
 import { useLocation } from "preact-iso";
 import { useState, useEffect } from "preact/hooks";
+import { Toast } from "./Toast.jsx";
 
 export function Header() {
   const { url } = useLocation();
   const [user, setUser] = useState(null);
+  const [toast, setToast] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -15,10 +17,14 @@ export function Header() {
   function handleLogout() {
     localStorage.removeItem("user");
     setUser(null);
-    window.location.href = "/";
+    setToast(true);
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 2500);
   }
 
   return (
+    <>
     <div className="navbar">
       <div className="logo">
         <a href="/">
@@ -57,5 +63,7 @@ export function Header() {
         )}
       </div>
     </div>
+    {toast && <Toast message="Logged out successfully!" onClose={() => setToast(false)} />}
+    </>
   );
 }

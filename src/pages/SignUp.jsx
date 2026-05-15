@@ -1,7 +1,9 @@
 import { useState } from "preact/hooks";
+import { Toast } from "../components/Toast.jsx";
 
 export function SignUp() {
   const [message, setMessage] = useState("");
+  const [toast, setToast] = useState(false);
 
   /** @param {Event} event */
   function handleSubmit(event) {
@@ -73,7 +75,10 @@ export function SignUp() {
         if (data.error) {
           setMessage(data.error);
         } else {
-          setMessage('Account created successfully! You can now sign in.');
+          setToast(true);
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 2500);
         }
       })
       .catch(error => {
@@ -116,6 +121,7 @@ export function SignUp() {
       </form>
 
       <p id="message">{message}</p>
+      {toast && <Toast message="Account created successfully!" onClose={() => setToast(false)} />}
     </div>
   );
 }
