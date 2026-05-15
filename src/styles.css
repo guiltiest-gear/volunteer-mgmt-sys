@@ -104,6 +104,9 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #ffffff;
+}
+
+#app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -163,19 +166,6 @@ button {
   text-align: center;
   margin-top: 15px;
   color: red;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
 }
 
 .logo {

@@ -1,5 +1,5 @@
 import { render } from "preact";
-import { LocationProvider, Router, Route } from "preact-iso";
+import { LocationProvider, Router, Route, useLocation } from "preact-iso";
 
 import { Header } from "./components/Header.jsx";
 import { Footer } from "./components/Footer.jsx";
@@ -10,6 +10,14 @@ import { Profile } from "./pages/Profile.jsx";
 import { NotFound } from "./pages/_404.jsx";
 import { EditPassword } from "./pages/EditPassword.jsx";
 import "./styles.css";
+
+const KNOWN_PATHS = ["/", "/signin", "/signup", "/profile", "/password/change"];
+
+function ConditionalFooter() {
+  const { path } = useLocation();
+  if (!KNOWN_PATHS.includes(path)) return null;
+  return <Footer />;
+}
 
 export function App() {
   return (
@@ -25,7 +33,7 @@ export function App() {
 		  <Route path="/password/change" component={EditPassword} />
         </Router>
       </main>
-      <Footer />
+      <ConditionalFooter />
     </LocationProvider>
   );
 }
