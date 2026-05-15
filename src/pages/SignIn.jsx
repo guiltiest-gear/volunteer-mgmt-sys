@@ -31,9 +31,8 @@ export function SignIn() {
       if (data.error) {
         setMessage(data.error);
       } else {
-        setMessage('Signed in successfully! Welcome, ' + data.full_name);
-        // Optionally, store user data or redirect
         localStorage.setItem('user', JSON.stringify(data));
+        window.location.href = '/';
       }
     })
     .catch(error => {

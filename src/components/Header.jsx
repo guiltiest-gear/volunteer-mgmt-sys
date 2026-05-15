@@ -1,6 +1,22 @@
 import { useLocation } from "preact-iso";
+import { useState, useEffect } from "preact/hooks";
+
 export function Header() {
   const { url } = useLocation();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  function handleLogout() {
+    localStorage.removeItem("user");
+    setUser(null);
+    window.location.href = "/";
+  }
 
   return (
     <div className="navbar">
@@ -28,8 +44,17 @@ export function Header() {
       </div>
 
       <div className="nav-actions">
-        <button onClick={() => window.location.href = "/signin"} className="btn">Sign In</button>
-        <button onClick={() => window.location.href = "/signup"} className="btn">Sign Up</button>
+        {user ? (
+          <>
+            <button onClick={() => window.location.href = "/profile"} className="btn">Profile</button>
+            <button onClick={handleLogout} className="btn">Logout</button>
+          </>
+        ) : (
+          <>
+            <button onClick={() => window.location.href = "/signin"} className="btn">Sign In</button>
+            <button onClick={() => window.location.href = "/signup"} className="btn">Sign Up</button>
+          </>
+        )}
       </div>
     </div>
   );

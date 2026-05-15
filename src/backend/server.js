@@ -110,6 +110,66 @@ app.post('/api/signin', (req, res) => {
     );
 });
 
+// Update email endpoint
+app.post('/api/update-email', (req, res) => {
+    const { userid, email } = req.body;
+
+    if (!userid || !email) {
+        res.status(400).json({ error: 'userid and email are required' });
+        return;
+    }
+
+    connection.query('SELECT * FROM users WHERE email = ? AND userid != ?', [email, userid], (err, results) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+
+        if ((/** @type {Array<any>} */ (results)).length > 0) {
+            res.status(409).json({ error: 'Email already in use' });
+            return;
+        }
+
+        connection.query('UPDATE users SET email = ? WHERE userid = ?', [email, userid], (err) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ message: 'Email updated successfully', email });
+        });
+    });
+});
+
+// Update password endpoint
+app.post('/api/update-password', (req, res) => {
+    const { userid, currentPassword, newPassword } = req.body;
+
+    if (!userid || !currentPassword || !newPassword) {
+        res.status(400).json({ error: 'userid, currentPassword, and newPassword are required' });
+        return;
+    }
+
+    connection.query('SELECT * FROM users WHERE userid = ? AND password = ?', [userid, currentPassword], (err, results) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+
+        if ((/** @type {Array<any>} */ (results)).length === 0) {
+            res.status(401).json({ error: 'Current password is incorrect' });
+            return;
+        }
+
+        connection.query('UPDATE users SET password = ? WHERE userid = ?', [newPassword, userid], (err) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ message: 'Password updated successfully' });
+        });
+    });
+});
+
 app.listen(5000, () => {
     console.log('Backend server running on port 5000');
 });
