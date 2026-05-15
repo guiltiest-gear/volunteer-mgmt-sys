@@ -6,7 +6,39 @@ export function SignIn() {
   /** @param {Event} event */
   function handleSubmit(event) {
     event.preventDefault();
-    setMessage("Signed in successfully!");
+    
+    const email = (/** @type {HTMLInputElement} */ (document.getElementById("email"))).value;
+    const password = (/** @type {HTMLInputElement} */ (document.getElementById("password"))).value;
+
+    if (!email || !password) {
+      setMessage("Email and password are required");
+      return;
+    }
+
+    // Send signin request to server
+    fetch('/api/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        setMessage(data.error);
+      } else {
+        setMessage('Signed in successfully! Welcome, ' + data.full_name);
+        // Optionally, store user data or redirect
+        localStorage.setItem('user', JSON.stringify(data));
+      }
+    })
+    .catch(error => {
+      setMessage('Error signing in: ' + error.message);
+    });
   }
 
   return (

@@ -8,7 +8,7 @@ export function SignUp() {
     event.preventDefault();
 
     //validate name to contain first and last name
-    const name = document.getElementById("name").value;
+    const name = (/** @type {HTMLInputElement} */ (document.getElementById("name"))).value;
     
     if (!name.includes(" ")) {
       setMessage("Please enter your full name.");
@@ -16,8 +16,8 @@ export function SignUp() {
     }
 
     //validate email and confirm email to be same
-    const email = document.getElementById("email").value.toLowerCase();
-    const confirmEmail = document.getElementById("confirmEmail").value.toLowerCase();
+    const email = (/** @type {HTMLInputElement} */ (document.getElementById("email"))).value.toLowerCase();
+    const confirmEmail = (/** @type {HTMLInputElement} */ (document.getElementById("confirmEmail"))).value.toLowerCase();
 
     if (email !== confirmEmail) {
       setMessage("Emails do not match.");
@@ -28,8 +28,8 @@ export function SignUp() {
     }
 
     //validate password and confirm password to be the same and at least 6 characters long
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+    const password = (/** @type {HTMLInputElement} */ (document.getElementById("password"))).value;
+    const confirmPassword = (/** @type {HTMLInputElement} */ (document.getElementById("confirmPassword"))).value;
 
     if (password !== confirmPassword) {
       setMessage("Passwords do not match.");
@@ -53,7 +53,32 @@ export function SignUp() {
       setMessage("Password must be at least 6 characters.");
       return;
     } else {
-      setMessage("Account created successfully!");
+      const role = (/** @type {HTMLSelectElement} */ (document.getElementById("role"))).value;
+      
+      // Send signup request to server
+      fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          full_name: name,
+          email: email,
+          password: password,
+          role: role
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          setMessage(data.error);
+        } else {
+          setMessage('Account created successfully! You can now sign in.');
+        }
+      })
+      .catch(error => {
+        setMessage('Error creating account: ' + error.message);
+      });
       return true;
     }
   }
@@ -66,7 +91,7 @@ export function SignUp() {
         <select id="role" name="role" required>
           <option value="">Select Role</option>
           <option value="volunteer">Volunteer</option>
-          <option value="organization">Administrator</option>
+          <option value="administrator">Administrator</option>
         </select>
         <input type="text" id="name" placeholder="Full Name" required />
         <input type="email" id="email" placeholder="Email" required />

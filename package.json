@@ -7,7 +7,11 @@
 		"preview": "vite preview",
 		"prepare": "husky"
 	},
+	"proxy": "http://localhost:5000",
 	"dependencies": {
+		"cors": "^2.8.6",
+		"express": "^5.2.1",
+		"mysql2": "^3.22.3",
 		"preact": "^10.26.9",
 		"preact-iso": "^2.12.0"
 	},
@@ -27,5 +31,20 @@
 			"preact",
 			"prettier"
 		]
-	}
+	},
+	"name": "volunteer-mgmt-sys",
+	"version": "1.0.0",
+	"description": "",
+	"main": "commitlint.config.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/guiltiest-gear/volunteer-mgmt-sys.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/guiltiest-gear/volunteer-mgmt-sys/issues"
+	},
+	"homepage": "https://github.com/guiltiest-gear/volunteer-mgmt-sys#readme"
 }
