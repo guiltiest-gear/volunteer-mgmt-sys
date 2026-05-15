@@ -4,23 +4,27 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"preact": "^10.26.9",
 		"preact-iso": "^2.12.0"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^21.0.1",
+		"@commitlint/config-conventional": "^21.0.1",
 		"@preact/preset-vite": "^2.10.2",
 		"eslint": "^9.39.4",
 		"eslint-config-preact": "^2.0.0",
 		"eslint-config-prettier": "^10.1.8",
+		"husky": "^9.1.7",
 		"vite": "^7.0.4"
 	},
 	"eslintConfig": {
 		"extends": [
-      "preact",
-      "prettier"
-    ]
+			"preact",
+			"prettier"
+		]
 	}
 }
